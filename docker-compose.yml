@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+  api-nestjs_nodejs:
+    build:
+      context: ./
+      dockerfile: ./docker/nodejs.docker
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - "3100:3000"
+    depends_on:
+      - api-nestjs_postgresql
+    stdin_open: true
+    tty: true
+    networks:
+      - api-nestjs
+
+  api-nestjs_postgresql:
+    image: postgres:12.5-alpine
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=api-nestjs
+      - POSTGRES_USER=root
+    ports:
+      - "5442:5432"
+    networks:
+      - api-nestjs
+
+networks:
+  api-nestjs:
+    name: api-nestjs_network

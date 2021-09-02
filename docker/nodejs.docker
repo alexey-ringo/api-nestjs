@@ -1,0 +1,25 @@
+# The instructions for the first stage
+FROM node:14.17-alpine as builder
+
+# Installs latest Chromium (85) package.
+RUN apk add --no-cache \
+      chromium \
+      nss \
+      freetype \
+      freetype-dev \
+      harfbuzz \
+      ca-certificates \
+      ttf-freefont \
+      nodejs \
+      yarn
+
+# Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
+
+RUN apk --no-cache add python make g++ git
+
+WORKDIR /usr/src/app

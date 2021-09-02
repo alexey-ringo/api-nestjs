@@ -1,0 +1,20 @@
+replicaCount: 1
+
+image:
+  repository: registry.gitlab.com/prolift_group/prolift-monorepo
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+hosts:
+  - api.dev.prolift.dev-ittest.ru
+
+#requests:
+#  cpu: 300
+#  memory: 2048
+
+#limits:
+#  cpu: 1000
+#  memory: 4096
