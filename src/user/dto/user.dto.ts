@@ -8,5 +8,5 @@ export class UserDto {
   name: string;
 
   @IsString()
-  lastName: string;
+  email: string;
 }
