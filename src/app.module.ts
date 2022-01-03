@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import * as process from 'process';
 import { ConfigModule } from '@nestjs/config';
+import {EduModule} from "./edu/edu.module";
 
 const host = process.env.P_POSTGRES_HOST || 'nestjs_postgresql';
 const database = process.env.P_POSTGRES_DATABASE || 'nestjs';
@@ -28,6 +29,7 @@ const port = Number(process.env.P_POSTGRES_PORT) || 5432;
       synchronize: true,
     }),
     UserModule,
+    EduModule,
   ],
   controllers: [AppController],
   providers: [AppService],
